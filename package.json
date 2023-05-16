@@ -27,6 +27,7 @@
   "dependencies": {
     "@ensdomains/ens-contracts": "^0.0.20",
     "@ensdomains/ens-test-env": "^0.3.7",
-    "hardhat-deploy": "^0.11.29"
+    "hardhat-deploy": "^0.11.29",
+    "node-fetch-commonjs": "^3.2.4"
   }
 }

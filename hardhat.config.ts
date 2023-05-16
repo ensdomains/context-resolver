@@ -12,12 +12,15 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       chainId: 1337,
-      tags: ['test', 'legacy', 'use_root'],
+      tags: ['use_root'],
+    //   tags: ['test', 'legacy', 'use_root'],
     },
     localhost: {
       url: 'http://localhost:8545',
-      chainId: 1337,
-      tags: ['test', 'legacy', 'use_root'],
+      chainId: 31337,
+    //   tags: ['test', 'legacy', 'use_root'],
+      tags: ['test', 'use_root'],
+    // tags: ['use_root'],
     },
   },
   namedAccounts: {
