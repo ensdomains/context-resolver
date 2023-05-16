@@ -1,0 +1,7 @@
+node_modules/*
+cache/*
+yarn-error.log
+tmp/*
+deployments/*
+artifacts/*
+typechain-types/*
