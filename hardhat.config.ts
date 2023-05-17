@@ -6,21 +6,20 @@ import 'hardhat-deploy'
 import { resolve } from 'path'
 
 const ensContractsPath = './node_modules/@ensdomains/ens-contracts'
+// const ensContractsPath = '../ens-contracts'
+console.log({ensContractsPath})
 process.env.BATCH_GATEWAY_URLS='["https://universal-offchain-unwrapper.ens-cf.workers.dev/"]'
 const config: HardhatUserConfig = {
   solidity: "0.8.18",
   networks: {
     hardhat: {
       chainId: 1337,
-      tags: ['use_root'],
-    //   tags: ['test', 'legacy', 'use_root'],
+      tags: ['test', 'legacy', 'use_root'],
     },
     localhost: {
       url: 'http://localhost:8545',
       chainId: 31337,
-    //   tags: ['test', 'legacy', 'use_root'],
-      tags: ['test', 'use_root'],
-    // tags: ['use_root'],
+      tags: ['test', 'legacy', 'use_root'],
     },
   },
   namedAccounts: {
