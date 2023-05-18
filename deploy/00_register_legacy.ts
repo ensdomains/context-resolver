@@ -13,36 +13,6 @@ const names = [
     namedAddr: 'owner',
   },
   {
-    label: 'to-be-wrapped',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-  },
-  {
-    label: 'resume-and-wrap',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-  },
-  {
-    label: 'other-registrant',
-    namedOwner: 'deployer',
-    namedAddr: 'deployer',
-  },
-  {
-    label: 'other-eth-record',
-    namedOwner: 'owner',
-    namedAddr: 'deployer',
-  },
-  {
-    label: 'from-settings',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-  },
-  {
-    label: 'with-legacy-resolver',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-  },
-  {
     label: 'with-profile',
     namedOwner: 'owner2',
     namedAddr: 'owner2',
@@ -70,21 +40,11 @@ const names = [
     },
   },
   {
-    label: 'to-be-renewed',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-  },
-  {
     label: 'with-subnames',
     namedOwner: 'owner',
     namedAddr: 'owner',
     subnames: [{ label: 'test', namedOwner: 'owner2' }],
-  },
-  ...Array.from({ length: 34 }, (_, i) => ({
-    label: `${i}-dummy`,
-    namedOwner: 'owner2',
-    namedAddr: 'owner2',
-  })),
+  }
 ]
 
 const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
@@ -137,66 +97,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     )
     console.log(`Registering name ${label}.eth (tx: ${registerTx.hash})...`)
     await registerTx.wait()
-
-    if (records) {
-      const _publicResolver = publicResolver.connect(
-        await ethers.getSigner(registrant),
-      )
-
-      const hash = namehash(`${label}.eth`)
-      console.log(`Setting records for ${label}.eth...`)
-      if (records.text) {
-        console.log('TEXT')
-        for (const { key, value } of records.text) {
-          const setTextTx = await _publicResolver.setText(hash, key, value)
-          console.log(` - ${key} ${value} (tx: ${setTextTx.hash})...`)
-          await setTextTx.wait()
-        }
-      }
-      if (records.addr) {
-        console.log('ADDR')
-        for (const { key, value } of records.addr) {
-          const setAddrTx = await _publicResolver[
-            'setAddr(bytes32,uint256,bytes)'
-          ](hash, key, value)
-          console.log(` - ${key} ${value} (tx: ${setAddrTx.hash})...`)
-          await setAddrTx.wait()
-        }
-      }
-      if (records.contenthash) {
-        console.log('CONTENTHASH')
-        const setContenthashTx = await _publicResolver.setContenthash(
-          hash,
-          records.contenthash,
-        )
-        console.log(
-          ` - ${records.contenthash} (tx: ${setContenthashTx.hash})...`,
-        )
-        await setContenthashTx.wait()
-      }
-    }
-
-    if (subnames) {
-      console.log(`Setting subnames for ${label}.eth...`)
-      const registry = await ethers.getContract('ENSRegistry')
-      for (const { label: subnameLabel, namedOwner } of subnames) {
-        const owner = allNamedAccts[namedOwner]
-        const _registry = registry.connect(await ethers.getSigner(registrant))
-        const setSubnameTx = await _registry.setSubnodeRecord(
-          namehash(`${label}.eth`),
-          labelhash(subnameLabel),
-          owner,
-          resolver,
-          '0',
-        )
-        console.log(` - ${subnameLabel} (tx: ${setSubnameTx.hash})...`)
-        await setSubnameTx.wait()
-      }
-    }
   }
 
   await network.provider.send('anvil_setBlockTimestampInterval', [1])
-  // await network.provider.request({method: 'evm_increaseTime',params: [1000]});
   return true
 }
 

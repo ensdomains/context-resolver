@@ -5,3 +5,6 @@ tmp/*
 deployments/*
 artifacts/*
 typechain-types/*
+.env
+.env.local
+data/*
