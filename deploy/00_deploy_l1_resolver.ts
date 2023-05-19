@@ -11,7 +11,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const l2ResolverAddress = l2PublicResolver.address
   const deployArgs = {
     from: deployer,
-    args: ['l2', 1, 'graphqlurl', 0, l2ResolverAddress],
+    args: ['l2 chain', 1, 'http://localhost:8000/subgraphs/name/ensdomains/ens-l2-subgraph', 0, l2ResolverAddress],
     log: true,
   }
   const tx = await deploy('ContextResolver', deployArgs)
