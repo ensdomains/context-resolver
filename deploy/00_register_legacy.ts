@@ -29,21 +29,6 @@ const names = [
         { key: 2, value: '0x0000000000000000000000000000000000000000' },
       ],
     },
-  },
-  {
-    label: 'with-contenthash',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-    records: {
-      contenthash:
-        '0xe301017012204edd2984eeaf3ddf50bac238ec95c5713fb40b5e428b508fdbe55d3b9f155ffe',
-    },
-  },
-  {
-    label: 'with-subnames',
-    namedOwner: 'owner',
-    namedAddr: 'owner',
-    subnames: [{ label: 'test', namedOwner: 'owner2' }],
   }
 ]
 

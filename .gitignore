@@ -8,3 +8,4 @@ typechain-types/*
 .env
 .env.local
 data/*
+archive*

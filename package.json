@@ -4,6 +4,11 @@
   "main": "index.js",
   "author": "Makoto Inoue",
   "license": "MIT",
+  "scripts": {
+    "deploy": "rm -rf deployments && hardhat deploy --network localhost",
+    "l2deploy": "hardhat run scripts/l2deploy.ts --network localhost",
+    "subgraph": "cat artifacts/contracts/l1/ContextResolver.sol/ContextResolver.json | jq '.abi' > ../ens-subgraph/abis/ContextResolver.json"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.0",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
@@ -27,6 +32,7 @@
   "dependencies": {
     "@ensdomains/ens-contracts": "^0.0.20",
     "@ensdomains/ens-test-env": "^0.3.7",
+    "dns-packet": "^5.6.0",
     "hardhat-deploy": "^0.11.29",
     "node-fetch-commonjs": "^3.2.4",
     "typechain": "^8.1.1"
