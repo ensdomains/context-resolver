@@ -73,3 +73,29 @@ yarn create-local && yarn deploy-local -l 1
 cd ../context-resolver
 yarn test
 ```
+
+Output
+
+```
+Querying L1 GraphqlEndpoint at http://127.0.0.1:8000/subgraphs/name/graphprotocol/ens
+{
+  resolver: {
+    id: '0x36c02da8a0983159322a80ffe9f24b1acff8b570-0xb760d28dc9b30ce4094506e71bc065c59902bfda967820af328f2d5638807581',
+    offchain: {
+      name: 'l2 chain',
+      id: '0x36c02da8a0983159322a80ffe9f24b1acff8b570',
+      graphqlUrl: 'http://localhost:8000/subgraphs/name/ensdomains/ens-l2-subgraph',
+      context: '0x0e801d84fa97b50751dbf25036d067dcf18858bf'
+    },
+    address: '0x36c02da8a0983159322a80ffe9f24b1acff8b570'
+  }
+}
+Querying L2 GraphqlEndpoint at http://localhost:8000/subgraphs/name/ensdomains/ens-l2-subgraph
+{
+  id: '0x0e801d84fa97b50751dbf25036d067dcf18858bf-0xb760d28dc9b30ce4094506e71bc065c59902bfda967820af328f2d5638807581',
+  name: 'test123.eth',
+  labelName: 'test123',
+  resolver: { address: '0x0e801d84fa97b50751dbf25036d067dcf18858bf' },
+  subdomains: [ { name: 'subname.test123.eth' } ]
+}
+```
