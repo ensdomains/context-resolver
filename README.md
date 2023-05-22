@@ -16,6 +16,7 @@ yarn
 cd ..
 git clone https://github.com/ensdomains/ens-subgraph.git
 cd ens-subgraph
+git checkout context
 yarn
 cd ..
 git clone https://github.com/ensdomains/context-resolver.git
