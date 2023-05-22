@@ -7,7 +7,7 @@ The actual CCIP-read capability is also not included in this demo.
 
 ## Setup
 
-### Download the necessary repos
+### Download the necessary repos
 
 ```
 git clone https://github.com/ensdomains/ens-l2-subgraph.git
@@ -31,7 +31,7 @@ The following script startup docker component that includes anvil chain and grap
 npx ens-test-env start --save
 ```
 
-### Deploy contract
+### Deploy contract
 
 ```
 yarn deploy
@@ -47,7 +47,7 @@ The deploy script will perform the followings
 
 The deployed contract addresses will be saved under `.env.local`
 
-### Setup subgraph
+### Setup subgraph
 
 Assuming you are still at `context-resolver` repo directory, run the following command to update deployed contract address of `subgraph.yml`
 
